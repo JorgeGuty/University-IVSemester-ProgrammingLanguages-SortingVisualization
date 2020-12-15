@@ -1,5 +1,7 @@
 package Algorithms
-
+import (
+	"math/rand"
+)
 func quicksort(a []int) []int {
     if len(a) < 2 {
         return a
