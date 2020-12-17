@@ -45,9 +45,9 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// Define the HTTP routes
-	e.File("/", "pusher-go-realtime-graph/public/index.html")
-	e.File("/style.css", "pusher-go-realtime-graph/public/style.css")
-	e.File("/app.js", "pusher-go-realtime-graph/public/app.js")
+	e.File("/", "visualization/public/index.html")
+	e.File("/style.css", "visualization/public/style.css")
+	e.File("/app.js", "visualization/public/app.js")
 	e.GET("/visualize", visualize)
 
 	// Start server
