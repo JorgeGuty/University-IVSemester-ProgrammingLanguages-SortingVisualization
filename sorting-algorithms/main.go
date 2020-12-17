@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"sorting-algorithms/Randomizer"
+	"sorting-visualization/sorting-algorithms/Randomizer"
 )
 
 func main() {

@@ -4,13 +4,14 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	pusher "github.com/pusher/pusher-http-go"
+	"sorting-visualization/sorting-algorithms/Randomizer"
 	"sync"
 
 	//"fmt"
 	//"math/rand"
 	"net/http"
-	"sorting-algorithms/Randomizer"
-)
+	)
+
 
 // We register the Pusher client
 var client = pusher.Client{
@@ -56,7 +57,7 @@ func main() {
 
 func visualize(c echo.Context) error {
 
-	array := Randomizer.RandomArray(10)
+	array := Randomizer.RandomArray(1000)
 
 	var waitGroup sync.WaitGroup
 
