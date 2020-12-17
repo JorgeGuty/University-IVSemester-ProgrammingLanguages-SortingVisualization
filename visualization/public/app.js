@@ -11,25 +11,46 @@ const visualization = pusher.subscribe('arrayVisualization');
 
 visualization.bind('addNumber', data => {
 
-    newLineChart.data.labels.push(data.Label);
-    newLineChart.data.datasets[0].data.push(data.Value);
+    bubbleSortChart.data.labels.push(data.Label);
+    bubbleSortChart.data.datasets[0].data.push(data.Value);
 
 });
 
 visualization.bind('update', () => {
-    newLineChart.update();
+    bubbleSortChart.update();
 });
 
-function renderChart(userVisitsData) {
-    var ctx = document.getElementById("realtimeChart").getContext("2d");
+visualization.bind('swap', data => {
+
+    bubbleSortChart.data.labels.push(data.Label);
+    bubbleSortChart.data.datasets[0].data.push(data.Value);
+
+});
+
+function renderBubbleSortChart(pData) {
+    var ctx = document.getElementById("bubbleSort").getContext("2d");
 
     var options = { animation: { duration: 0 }};
 
-    newLineChart = new Chart(ctx, {
+    bubbleSortChart = new Chart(ctx, {
         type: "bar",
-        data: userVisitsData,
+        data: pData,
         options: options
     });
+
+}
+
+function renderHeapSortChart(pData) {
+    var ctx = document.getElementById("heapSort").getContext("2d");
+
+    var options = { animation: { duration: 0 }};
+
+    heapSortChart = new Chart(ctx, {
+        type: "bar",
+        data: pData,
+        options: options
+    });
+
 }
 
 var chartConfig = {
@@ -60,4 +81,5 @@ var chartConfig = {
     ]
 };
 
-renderChart(chartConfig)
+renderBubbleSortChart(chartConfig)
+renderHeapSortChart(chartConfig)

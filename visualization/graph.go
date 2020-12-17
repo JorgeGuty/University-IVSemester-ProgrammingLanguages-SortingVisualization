@@ -57,7 +57,7 @@ func main() {
 
 func visualize(c echo.Context) error {
 
-	array := Randomizer.RandomArray(1000)
+	array := Randomizer.RandomArray(500)
 
 	var waitGroup sync.WaitGroup
 

@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html>
 <head>
-    <title>Realtime User Analytics</title>
+    <title>Sorting Visualization</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -11,13 +11,18 @@
 <body>
 
 <section class="subheader">
-    <h2>1000 element random array visualization</h2>
-    <button id="visualizeArray" class="btn-primary"> Visualize random array </button>
+    <button id="visualizeArray" class="btn-primary"> Set Charts </button>
+    <button id="solveAlgorithms" class="btn-primary"> Start Solving </button>
 </section>
 
-<section width="500px" style="margin:0 auto;width: 100%;max-width: 800px">
-    <canvas id="realtimeChart"></canvas>
-</section>
+<div style="width:600px;height:300px">
+    <canvas id="bubbleSort"></canvas>
+</div>
+
+
+<div style="width:600px;height:300px">
+    <canvas id="heapSort"></canvas>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
 <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
