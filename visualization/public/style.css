@@ -16,3 +16,17 @@ header{
     margin: 20px;
     text-align: center;
 }
+
+.inline-block-child {
+    display: inline-block;
+}
+
+.parent {
+    padding: 1rem
+}
+
+.child {
+    border: 1px solid indigo;
+
+    padding: 1rem
+}

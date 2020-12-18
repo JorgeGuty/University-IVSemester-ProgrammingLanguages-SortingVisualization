@@ -47,12 +47,12 @@ func main() {
 
 	// Define the HTTP routes
 	e.File("/", "visualization/public/index.html")
-	e.File("/style.css", "visualization/public/style.css")
-	e.File("/app.js", "visualization/public/app.js")
+	e.Static("/style.css", "visualization/public/style.css")
+	e.Static("/app.js", "visualization/public/app.js")
 	e.GET("/visualize", visualize)
 
 	// Start server
-	e.Logger.Fatal(e.Start("localhost:9000"))
+	e.Logger.Fatal(e.Start(":11000"))
 }
 
 func visualize(c echo.Context) error {
@@ -76,7 +76,7 @@ func addNumber( pNumber int, pWaitGroup *sync.WaitGroup) {
 	defer pWaitGroup.Done()
 	arrayValue := arrayElement{
 		Value: pNumber,
-		Label: "",
+		Label: "     ",
 	}
 	client.Trigger("arrayVisualization", "addNumber", arrayValue)
 }
