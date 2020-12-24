@@ -1,6 +1,12 @@
 document.getElementById("visualizeArray").addEventListener("click", function(){
-    axios.get('/visualize')
+    let n = document.getElementById("elementsQuantity").value
+    axios.get(`/visualize/${n}`)
+    document.getElementById("solveAlgorithms").disabled = false
 })
+document.getElementById("solveAlgorithms").addEventListener("click", function(){
+    axios.get('/solve')
+})
+
 
 const pusher = new Pusher('9515c01265248c7e86e8', {
     cluster: 'us2',
@@ -43,10 +49,44 @@ visualization.bind('update', () => {
 
 visualization.bind('swap', data => {
 
-    bubbleSortChart.data.labels.push(data.Label);
-    bubbleSortChart.data.datasets[0].data.push(data.Value);
+    let sortID = data.SortID
+    let index1 = data.Index1
+    let index2 = data.Index2
 
+    switch (sortID)
+    {
+        case "bubble":
+            swapArrayElements(bubbleSortChart.data.datasets[0].data, index1, index2)
+            bubbleSortChart.update();
+            break;
+        case "heap":
+            swapArrayElements(heapSortChart.data.datasets[0].data, index1, index2)
+            heapSortChart.update();
+            break;
+        case "selection":
+            swapArrayElements(selectionSortChart.data.datasets[0].data, index1, index2)
+            selectionSortChart.update();
+            break;
+        case "insertion":
+            swapArrayElements(insertionSortChart.data.datasets[0].data, index1, index2)
+            insertionSortChart.update();
+            break;
+        case "quick":
+            swapArrayElements(quickSortChart.data.datasets[0].data, index1, index2)
+            quickSortChart.update();
+            break;
+        case "tree":
+            swapArrayElements(treeSortChart.data.datasets[0].data, index1, index2)
+            treeSortChart.update();
+            break;
+    }
 });
+
+function swapArrayElements(pArray, pIndex1, pIndex2){
+    let auxiliarVariable = pArray[pIndex1]
+    pArray[pIndex1] = pArray[pIndex2]
+    pArray[pIndex2] = auxiliarVariable
+}
 
 function renderCharts() {
 
@@ -58,6 +98,9 @@ function renderCharts() {
     var quickCtx     = document.getElementById("quickSort").getContext("2d");
 
     var options = {
+        animation: {
+            duration: 0
+        },
         scales: {
             xAxes: [{
                 gridLines: {
