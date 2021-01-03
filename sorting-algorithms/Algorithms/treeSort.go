@@ -3,6 +3,8 @@ package Algorithms
 func TreeSortVisualizer(pArray []int){
 	channel:= make(chan Pair);
 	go TreeSort(pArray, channel)
+	//mandar a visualizar 
+	<- channel;
 }
 // TreeSort Algorithm
 func TreeSort(pArray []int, pChannel chan Pair) []int {
