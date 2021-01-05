@@ -1,10 +1,6 @@
 package Algorithms
 
-import (
-	"sync"
-)
-
-func bubbleSort ( pArray []int, pWaitGroup *sync.WaitGroup ) []int{
+func bubbleSort ( pArray []int ) []int{
 
 	isSorted := false
 	unSortedQuantity := len(pArray)

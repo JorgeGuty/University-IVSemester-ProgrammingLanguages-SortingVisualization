@@ -8,12 +8,13 @@ import (
 	"sorting-visualization/sorting-algorithms/Randomizer"
 	"strconv"
 	"sync"
-
 	//"fmt"
 	//"math/rand"
 	"net/http"
 )
 
+
+var globalArray []int
 
 // We register the Pusher client
 var client = pusher.Client{
@@ -59,11 +60,13 @@ func main() {
 	e.Static("/style.css", "visualization/public/style.css")
 	e.Static("/app.js", "visualization/public/app.js")
 	e.GET("/visualize/:n", visualize)
-	e.GET("/solve", swap)
+	e.GET("/solve", solve)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":11000"))
 }
+
+
 
 func visualize(c echo.Context) error {
 
@@ -75,18 +78,23 @@ func visualize(c echo.Context) error {
 
 	array := Randomizer.RandomArray(n)
 
+	globalArray = array
+
+	fmt.Println(globalArray)
+
 	var waitGroup sync.WaitGroup
 
 	for _, number := range array {
 		waitGroup.Add(1)
 		go addNumber(number, &waitGroup)
+		waitGroup.Wait()
 	}
-	waitGroup.Wait()
 
 	client.Trigger("arrayVisualization", "update", 0)
 
 	return c.String(http.StatusOK, "Visualization done")
 }
+
 
 func addNumber( pNumber int, pWaitGroup *sync.WaitGroup) {
 	defer pWaitGroup.Done()
@@ -97,17 +105,45 @@ func addNumber( pNumber int, pWaitGroup *sync.WaitGroup) {
 	client.Trigger("arrayVisualization", "addNumber", arrayValue)
 }
 
-// Swap
-func swap(c echo.Context) error {
+func solve(c echo.Context) error {
 
-	swapData := swapElement{
-		Index1: 3,
-		Index2: 6,
-		SortID: "insertion",
-	}
+	bubbleArray := make([]int, len(globalArray))
+	insertionArray := make([]int, len(globalArray))
+	heapArray := make([]int, len(globalArray))
+	quickArray := make([]int, len(globalArray))
+	selectionArray := make([]int, len(globalArray))
+	treeArray := make([]int, len(globalArray))
 
-	client.Trigger("arrayVisualization", "swap", swapData)
+	copy(heapArray, globalArray)
+	copy(quickArray, globalArray)
+	copy(bubbleArray, globalArray)
+	copy(insertionArray, globalArray)
+	copy(selectionArray, globalArray)
+	copy(treeArray, globalArray)
+
+	var waitGroup sync.WaitGroup
+	waitGroup.Add(6)
+
+	waitGroup.Done()
+	waitGroup.Done()
+	waitGroup.Done()
+	waitGroup.Done()
+	waitGroup.Done()
+	waitGroup.Done()
+
+	waitGroup.Wait()
 
 	return c.String(http.StatusOK, "Simulation begun")
 
+}
+
+// Swap
+func swap( pIndex1 int, pIndex2 int, sortID string ){
+	swapData := swapElement{
+		Index1: pIndex1,
+		Index2: pIndex2,
+		SortID: sortID,
+	}
+
+	client.Trigger("arrayVisualization", "swap", swapData)
 }
