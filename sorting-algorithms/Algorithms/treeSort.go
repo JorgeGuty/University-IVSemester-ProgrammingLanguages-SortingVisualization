@@ -1,13 +1,22 @@
 package Algorithms
+
+import(
+	"sorting-visualization/sorting-algorithms/Utility"
+	"sorting-visualization/visualization"
+)
+
 //TreeSortVisualizer consumer function of TreeSort()
-func TreeSortVisualizer(pArray []int){
-	channel:= make(chan Pair);
+func TreeSortVisualizer(pArray []int, pSortID string){
+	channel:= make(chan utility.Pair);
 	go TreeSort(pArray, channel)
-	//mandar a visualizar 
-	<- channel;
+	var pairToSwap utility.Pair;
+	for {
+		pairToSwap = <- channel;
+		main.VisualSwap(pairToSwap.A,pairToSwap.B,pSortID)
+	}
 }
 // TreeSort Algorithm
-func TreeSort(pArray []int, pChannel chan Pair) []int {
+func TreeSort(pArray []int, pChannel chan utility.Pair) []int {
 	lenght := len(pArray) 
 	for i := (lenght / 2) - 1 ; i > 0; i-- {
 		siftup(i, (lenght - 1), pArray, pChannel)
@@ -24,7 +33,7 @@ func Swap(x int, y int, array []int) {
 	array[x] = array[y]
 	array[y] = temp
 }
-func siftup(index int, size int, array []int, channel chan Pair) {
+func siftup(index int, size int, array []int, channel chan utility.Pair) {
 	rootValue := array[index]
 	var sibling int
 	for childIndex := (2 * index) + 1; childIndex <= size; childIndex = (2 * index) + 1 {
@@ -38,7 +47,7 @@ func siftup(index int, size int, array []int, channel chan Pair) {
 			//No es exactamente un swap pero se puede mostrar asi
 			array[index] = array[childIndex]
 			//swap
-			channel <- Pair{index, childIndex}
+			channel <- utility.Pair{A: index, B: childIndex}
 			index = childIndex
 			continue
 		}
@@ -46,10 +55,4 @@ func siftup(index int, size int, array []int, channel chan Pair) {
 	}
 	array[index] = rootValue
 	// ? Hay que visualizar a ver si aqui es necesario poner uno
-}
-//Este es un struct para hacer un tipo tupla que se puede hacer con {}
-//https://stackoverflow.com/questions/13670818/pair-tuple-data-type-in-go
-//https://stackoverflow.com/questions/17825857/how-to-make-a-channel-that-receive-multiple-return-values-from-a-goroutine
-type Pair struct {
-    a, b interface{}
 }
