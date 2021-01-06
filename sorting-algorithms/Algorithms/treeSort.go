@@ -1,4 +1,4 @@
-package Algorithms
+package algorithms
 
 import(
 	"sorting-visualization/sorting-algorithms/Utility"

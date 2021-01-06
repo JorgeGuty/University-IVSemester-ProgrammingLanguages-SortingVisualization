@@ -10,7 +10,7 @@ import(
 func TreeSortVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGroup){
 	defer pWaitGroup.Done()
 	channel:= make(chan utility.Pair);
-	go Algorithms.TreeSort(pArray, channel)
+	go algorithms.TreeSort(pArray, channel)
 	var pairToSwap utility.Pair;
 	for {
 		pairToSwap = <- channel;
@@ -21,7 +21,7 @@ func TreeSortVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGroup
 func HeapSortVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGroup){
 	defer pWaitGroup.Done()
 	channel:= make(chan utility.Pair);
-	go Algorithms.HeapSort(pArray, channel)
+	go algorithms.HeapSort(pArray, channel)
 	var pairToSwap utility.Pair;
 	for {
 		pairToSwap = <- channel;
