@@ -119,9 +119,9 @@ func solve(c echo.Context) error {
 	waitGroup.Add(6)
 
 	//Visualizer foos here
-	TreeSortVisualizer(treeArray,treeSortID, &waitGroup)
-	HeapSortVisualizer(heapArray,heapSortID, &waitGroup)
-	waitGroup.Done()
+	go AlgorithmVisualizer(treeArray,treeSortID, &waitGroup)
+	go AlgorithmVisualizer(heapArray,heapSortID, &waitGroup)
+	go AlgorithmVisualizer(bubbleArray, bubbleSortID, &waitGroup)
 	waitGroup.Done()
 	waitGroup.Done()
 	waitGroup.Done()

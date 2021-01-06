@@ -3,9 +3,10 @@ package algorithms
 import(
     //Import for Pair Struct
     //"sorting-visualization/sorting-algorithms/Utility"
+	utility "sorting-visualization/sorting-algorithms/Utility"
 )
 
-func bubbleSort ( pArray []int ) []int{
+func BubbleSort( pArray []int, pChannel chan utility.Pair) []int{
 
 	isSorted := false
 	unSortedQuantity := len(pArray)
@@ -15,9 +16,7 @@ func bubbleSort ( pArray []int ) []int{
 		isSorted = true
 		for j := 1 ; j < unSortedQuantity ; j++ {
 			if pArray[j - 1] > pArray[j]{
-				pivot := pArray[j]
-				pArray[j] = pArray[j - 1]
-				pArray[j - 1] = pivot
+				utility.Swap( j-1, j, pArray, pChannel)
 				isSorted = false
 			}
 		}

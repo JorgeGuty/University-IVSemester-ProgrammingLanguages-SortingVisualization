@@ -9,9 +9,9 @@ type Pair struct {
 }
 
 // Swap Utility with channel 
-func Swap(x int, y int, array []int, channel chan Pair) {
-	temp := array[x]
-	array[x] = array[y]
-    array[y] = temp
-    channel <- Pair{A: x, B: y}
+func Swap(pIndex1 int, pIndex2 int, array []int, channel chan Pair) {
+	temp := array[pIndex1]
+	array[pIndex1] = array[pIndex2]
+    array[pIndex2] = temp
+    channel <- Pair{A: pIndex1, B: pIndex2}
 }
