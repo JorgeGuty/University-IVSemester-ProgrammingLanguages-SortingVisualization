@@ -1,4 +1,4 @@
-package main
+package visualizer
 
 import (
 	"fmt"
@@ -8,15 +8,22 @@ import (
 	"sorting-visualization/sorting-algorithms/Randomizer"
 	"strconv"
 	"sync"
-	//"fmt"
-	//"math/rand"
 	"net/http"
 )
+
+// * SortIDs: * 
+
+const heapSortID = "heap";
+const bubbleSortID = "bubble";
+const insertionSortID = "insertion";
+const quickSortID = "quick";
+const treeSortID = "tree";
+const selectionSortID = "selection";
 
 
 var globalArray []int
 
-// We register the Pusher client
+// Pusher client
 var client = pusher.Client{
 	AppID:   "1119581",
 	Key:     "9515c01265248c7e86e8",
@@ -25,27 +32,17 @@ var client = pusher.Client{
 	Secure:  true,
 }
 
-
+// Structs for pusher comms
 type arrayElement struct {
 	Value int
 	Label string
 }
 
-/*
-SortIDs:
-heap
-bubble
-insertion
-quick
-tree
-selection
-*/
 type swapElement struct {
 	Index1 int
 	Index2 int
 	SortID string
 }
-
 
 func main() {
 	// Echo instance
@@ -65,8 +62,6 @@ func main() {
 	// Start server
 	e.Logger.Fatal(e.Start(":11000"))
 }
-
-
 
 func visualize(c echo.Context) error {
 
@@ -94,7 +89,6 @@ func visualize(c echo.Context) error {
 
 	return c.String(http.StatusOK, "Visualization done")
 }
-
 
 func addNumber( pNumber int, pWaitGroup *sync.WaitGroup) {
 	defer pWaitGroup.Done()
@@ -124,6 +118,8 @@ func solve(c echo.Context) error {
 	var waitGroup sync.WaitGroup
 	waitGroup.Add(6)
 
+	//Visualizer foos here
+	TreeSortVisualizer(treeArray,treeSortID);
 	waitGroup.Done()
 	waitGroup.Done()
 	waitGroup.Done()

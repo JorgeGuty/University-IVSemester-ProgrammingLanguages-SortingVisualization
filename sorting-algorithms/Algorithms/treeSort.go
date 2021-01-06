@@ -2,19 +2,8 @@ package Algorithms
 
 import(
 	"sorting-visualization/sorting-algorithms/Utility"
-	"sorting-visualization/visualization"
 )
 
-//TreeSortVisualizer consumer function of TreeSort()
-func TreeSortVisualizer(pArray []int, pSortID string){
-	channel:= make(chan utility.Pair);
-	go TreeSort(pArray, channel)
-	var pairToSwap utility.Pair;
-	for {
-		pairToSwap = <- channel;
-		main.VisualSwap(pairToSwap.A,pairToSwap.B,pSortID)
-	}
-}
 // TreeSort Algorithm
 func TreeSort(pArray []int, pChannel chan utility.Pair) []int {
 	lenght := len(pArray) 
