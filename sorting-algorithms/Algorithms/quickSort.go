@@ -1,6 +1,8 @@
-package Algorithms
+package algorithms
 import (
-	"math/rand"
+    "math/rand"
+    //Import for Pair Struct
+    //"sorting-visualization/sorting-algorithms/Utility"
 )
 func quicksort(a []int) []int {
     if len(a) < 2 {

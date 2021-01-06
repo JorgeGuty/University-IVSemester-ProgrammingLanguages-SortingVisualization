@@ -1,16 +1,20 @@
-package Algorithms
+package algorithms
+
+import(
+	"sorting-visualization/sorting-algorithms/Utility"
+)
 
 //HeapSort algorithm
-func HeapSort(pArray []int) {
+func HeapSort(pArray []int, pChannel chan utility.Pair) {
 	for i := len(pArray) / 2 - 1; i >= 0; i-- {
-		heapify(pArray,len(pArray),i)
+		heapify(pArray,len(pArray),i,pChannel)
 	}
 	for i := len(pArray)-1; i > 0; i-- {
-		Swap(0, i, pArray);
-		heapify(pArray,i,0)
+		utility.Swap(0, i, pArray,pChannel);
+		heapify(pArray,i,0,pChannel)
 	}
 }
-func heapify(pArray []int, pSize int, pRoot int){
+func heapify(pArray []int, pSize int, pRoot int, pChannel chan utility.Pair){
 	max := pRoot;
 	leftChild := 2 * pRoot + 1;
 	rightChild := 2 * pRoot + 2;
@@ -22,7 +26,7 @@ func heapify(pArray []int, pSize int, pRoot int){
 		max = rightChild;
 	}
 	if(max != pRoot){
-		Swap(pRoot,max,pArray);
-		heapify(pArray,pSize,max);
+		utility.Swap(pRoot,max,pArray,pChannel);
+		heapify(pArray,pSize,max, pChannel);
 	}
 }

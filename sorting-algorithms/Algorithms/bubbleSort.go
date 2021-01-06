@@ -1,4 +1,9 @@
-package Algorithms
+package algorithms
+
+import(
+    //Import for Pair Struct
+    //"sorting-visualization/sorting-algorithms/Utility"
+)
 
 func bubbleSort ( pArray []int ) []int{
 

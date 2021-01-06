@@ -1,5 +1,9 @@
-package Algorithms
+package algorithms
 
+import(
+    //Import for Pair Struct
+    //"sorting-visualization/sorting-algorithms/Utility"
+)
 
 func insertionsort(items []int) {
     var n = len(items)
