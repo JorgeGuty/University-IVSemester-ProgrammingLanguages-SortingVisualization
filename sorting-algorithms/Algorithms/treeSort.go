@@ -27,9 +27,7 @@ func siftup(index int, size int, array []int, channel chan utility.Pair) {
 			}
 		}
 		if array[childIndex] > rootValue {
-			//No es exactamente un swap pero se puede mostrar asi
 			array[index] = array[childIndex]
-			//swap
 			channel <- utility.Pair{A: index, B: childIndex}
 			index = childIndex
 			continue
@@ -37,5 +35,4 @@ func siftup(index int, size int, array []int, channel chan utility.Pair) {
 		break
 	}
 	array[index] = rootValue
-	// ? Hay que visualizar a ver si aqui es necesario poner uno
 }

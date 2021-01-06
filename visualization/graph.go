@@ -119,11 +119,8 @@ func solve(c echo.Context) error {
 	waitGroup.Add(6)
 
 	//Visualizer foos here
-	// No se de que es el warning con el waitGroup
 	TreeSortVisualizer(treeArray,treeSortID, &waitGroup)
 	HeapSortVisualizer(heapArray,heapSortID, &waitGroup)
-	waitGroup.Done()
-	waitGroup.Done()
 	waitGroup.Done()
 	waitGroup.Done()
 	waitGroup.Done()
