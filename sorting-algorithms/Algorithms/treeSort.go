@@ -12,15 +12,9 @@ func TreeSort(pArray []int, pChannel chan utility.Pair) []int {
 	}
 	for i := (lenght - 1); i > 0; i-- {
 		siftup(0, i, pArray, pChannel)
-		Swap(0, i, pArray)
+		utility.Swap(0, i, pArray,pChannel)
 	}
 	return pArray
-}
-// Swap Utility
-func Swap(x int, y int, array []int) {
-	temp := array[x]
-	array[x] = array[y]
-	array[y] = temp
 }
 func siftup(index int, size int, array []int, channel chan utility.Pair) {
 	rootValue := array[index]

@@ -7,3 +7,11 @@ type Pair struct {
     A int
     B int
 }
+
+// Swap Utility with channel 
+func Swap(x int, y int, array []int, channel chan Pair) {
+	temp := array[x]
+	array[x] = array[y]
+    array[y] = temp
+    channel <- Pair{A: x, B: y}
+}
