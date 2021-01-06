@@ -1,4 +1,4 @@
-package visualizer
+package main
 
 import (
 	"fmt"
