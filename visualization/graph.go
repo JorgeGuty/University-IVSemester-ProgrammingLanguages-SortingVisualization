@@ -137,13 +137,12 @@ func solve(c echo.Context) error {
 
 }
 
-// Swap
-func swap( pIndex1 int, pIndex2 int, sortID string ){
+// VisualSwap swaps two bars in visualization
+func VisualSwap( pIndex1 int, pIndex2 int, sortID string ){
 	swapData := swapElement{
 		Index1: pIndex1,
 		Index2: pIndex2,
 		SortID: sortID,
 	}
-
 	client.Trigger("arrayVisualization", "swap", swapData)
 }
