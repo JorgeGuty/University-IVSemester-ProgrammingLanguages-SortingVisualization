@@ -82,6 +82,90 @@ visualization.bind('swap', data => {
     }
 });
 
+visualization.bind('solved', data => {
+
+    let sortID = data.SortID
+    var color = "rgb(110,227,106)"
+    var hoverColor = "rgb(154,237,135)"
+
+    switch (sortID)
+    {
+        case "bubble":
+            bubbleSortChart.data.datasets[0].backgroundColor = color
+            bubbleSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+            bubbleSortChart.update();
+            break;
+
+        case "heap":
+            heapSortChart.data.datasets[0].backgroundColor = color
+            heapSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+            heapSortChart.update();
+            break;
+
+        case "selection":
+            selectionSortChart.data.datasets[0].backgroundColor = color
+            selectionSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+            selectionSortChart.update();
+            break;
+
+        case "insertion":
+            insertionSortChart.data.datasets[0].backgroundColor = color
+            insertionSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+            insertionSortChart.update();
+            break;
+
+        case "quick":
+            quickSortChart.data.datasets[0].backgroundColor = color
+            quickSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+            quickSortChart.update();
+            break;
+
+        case "tree":
+            treeSortChart.data.datasets[0].backgroundColor = color
+            treeSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+            treeSortChart.update();
+            break;
+        default:
+            treeSortChart.data.datasets[0].backgroundColor = color
+            treeSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+            treeSortChart.update();
+            break;
+    }
+
+});
+
+visualization.bind('startSolving', () => {
+
+    var color = "rgb(227,209,106)"
+    var hoverColor = "rgb(237,232,135)"
+
+    bubbleSortChart.data.datasets[0].backgroundColor = color
+    bubbleSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+    bubbleSortChart.update();
+
+    heapSortChart.data.datasets[0].backgroundColor = color
+    heapSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+    heapSortChart.update();
+
+    selectionSortChart.data.datasets[0].backgroundColor = color
+    selectionSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+    selectionSortChart.update();
+
+    insertionSortChart.data.datasets[0].backgroundColor = color
+    insertionSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+    insertionSortChart.update();
+
+    quickSortChart.data.datasets[0].backgroundColor = color
+    quickSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+    quickSortChart.update();
+
+    treeSortChart.data.datasets[0].backgroundColor = color
+    treeSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
+    treeSortChart.update();
+
+
+});
+
 function swapArrayElements(pArray, pIndex1, pIndex2){
     let auxiliarVariable = pArray[pIndex1]
     pArray[pIndex1] = pArray[pIndex2]
@@ -156,23 +240,10 @@ function getConfig(pDataArray){
                 label: "",
                 fill: false,
                 lineTension: 0.1,
-                backgroundColor: "rgba(255,0,0,0.4)",
-                borderColor: "rgb(0,0,0)",
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: "rgba(75,192,192,1)",
-                pointBackgroundColor: "#000000",
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                pointHoverBorderColor: "rgba(220,220,220,1)",
-                pointHoverBorderWidth: 2,
-                pointRadius: 1,
-                pointHitRadius: 10,
+                backgroundColor : "rgb(227,106,106)",
+                hoverBackgroundColor : "rgb(237,135,135)",
+                borderWidth : 0,
                 data: pDataArray,
-                spanGaps: false,
             }
         ]
     };

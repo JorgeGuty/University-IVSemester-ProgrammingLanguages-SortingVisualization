@@ -44,6 +44,10 @@ type swapElement struct {
 	SortID string
 }
 
+type solvedEventElement struct {
+	SortID string
+}
+
 func main() {
 	// Echo instance
 	e := echo.New()
@@ -60,7 +64,7 @@ func main() {
 	e.GET("/solve", solve)
 
 	// Start server
-	e.Logger.Fatal(e.Start(":11000"))
+	e.Logger.Fatal(e.Start(":11001"))
 }
 
 func visualize(c echo.Context) error {
@@ -101,32 +105,37 @@ func addNumber( pNumber int, pWaitGroup *sync.WaitGroup) {
 
 func solve(c echo.Context) error {
 
-	bubbleArray := make([]int, len(globalArray))
+	bubbleArray    := make([]int, len(globalArray))
 	insertionArray := make([]int, len(globalArray))
-	heapArray := make([]int, len(globalArray))
-	quickArray := make([]int, len(globalArray))
+	heapArray      := make([]int, len(globalArray))
+	quickArray     := make([]int, len(globalArray))
 	selectionArray := make([]int, len(globalArray))
-	treeArray := make([]int, len(globalArray))
+	treeArray      := make([]int, len(globalArray))
 
-	copy(heapArray, globalArray)
-	copy(quickArray, globalArray)
-	copy(bubbleArray, globalArray)
+	copy(heapArray,      globalArray)
+	copy(quickArray,     globalArray)
+	copy(bubbleArray,    globalArray)
 	copy(insertionArray, globalArray)
 	copy(selectionArray, globalArray)
-	copy(treeArray, globalArray)
+	copy(treeArray,      globalArray)
+
+	client.Trigger("arrayVisualization", "startSolving", 0)
 
 	var waitGroup sync.WaitGroup
 	waitGroup.Add(6)
 
 	//Visualizer foos here
-	go AlgorithmVisualizer(treeArray,treeSortID, &waitGroup)
-	go AlgorithmVisualizer(heapArray,heapSortID, &waitGroup)
-	go AlgorithmVisualizer(bubbleArray, bubbleSortID, &waitGroup)
-	waitGroup.Done()
-	waitGroup.Done()
+	go AlgorithmVisualizer(treeArray,      treeSortID,      &waitGroup, client)
+	go AlgorithmVisualizer(heapArray,      heapSortID,      &waitGroup, client)
+	go AlgorithmVisualizer(bubbleArray,    bubbleSortID,    &waitGroup, client)
+	go AlgorithmVisualizer(insertionArray, insertionSortID, &waitGroup, client)
+	go AlgorithmVisualizer(selectionArray, selectionSortID, &waitGroup, client)
+	//go AlgorithmVisualizer(quickArray,     quickSortID,     &waitGroup, client)
 	waitGroup.Done()
 
 	waitGroup.Wait()
+
+	fmt.Println("terminan")
 
 	return c.String(http.StatusOK, "Simulation begun")
 

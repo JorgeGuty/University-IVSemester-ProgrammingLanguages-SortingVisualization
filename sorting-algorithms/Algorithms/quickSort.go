@@ -1,31 +1,33 @@
 package algorithms
 import (
     "math/rand"
+    utility "sorting-visualization/sorting-algorithms/Utility"
+
     //Import for Pair Struct
     //"sorting-visualization/sorting-algorithms/Utility"
 )
-func quicksort(a []int) []int {
-    if len(a) < 2 {
-        return a
+func QuickSort( pArray []int, pChannel chan utility.Pair) []int {
+    if len(pArray) < 2 {
+        return pArray
     }
      
-    left, right := 0, len(a)-1
+    left, right := 0, len(pArray)-1
      
-    pivot := rand.Int() % len(a)
+    pivot := rand.Int() % len(pArray)
+
+    pArray[pivot], pArray[right] = pArray[right], pArray[pivot]
      
-    a[pivot], a[right] = a[right], a[pivot]
-     
-    for i, _ := range a {
-        if a[i] < a[right] {
-            a[left], a[i] = a[i], a[left]
+    for i, _ := range pArray {
+        if pArray[i] < pArray[right] {
+            pArray[left], pArray[i] = pArray[i], pArray[left]
             left++
         }
     }
-     
-    a[left], a[right] = a[right], a[left]
-     
-    quicksort(a[:left])
-    quicksort(a[left+1:])
-     
-    return a
+
+    pArray[left], pArray[right] = pArray[right], pArray[left]
+
+    QuickSort(pArray[:left], pChannel)
+    QuickSort(pArray[left+1:], pChannel)
+
+    return pArray
 }

@@ -6,7 +6,7 @@ import(
 	utility "sorting-visualization/sorting-algorithms/Utility"
 )
 
-func BubbleSort( pArray []int, pChannel chan utility.Pair) []int{
+func BubbleSort( pArray []int, pChannel chan utility.Pair){
 
 	isSorted := false
 	unSortedQuantity := len(pArray)
@@ -16,13 +16,11 @@ func BubbleSort( pArray []int, pChannel chan utility.Pair) []int{
 		isSorted = true
 		for j := 1 ; j < unSortedQuantity ; j++ {
 			if pArray[j - 1] > pArray[j]{
-				utility.Swap( j-1, j, pArray, pChannel)
+				utility.Swap( j - 1, j, pArray, pChannel )
 				isSorted = false
 			}
 		}
 
 		unSortedQuantity--
 	}
-
-	return pArray
 }

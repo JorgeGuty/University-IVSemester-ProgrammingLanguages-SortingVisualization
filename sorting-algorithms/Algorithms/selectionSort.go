@@ -3,18 +3,19 @@ package algorithms
 import(
     //Import for Pair Struct
     //"sorting-visualization/sorting-algorithms/Utility"
+    utility "sorting-visualization/sorting-algorithms/Utility"
 )
 
-func selectionsort(items []int) {
-    var n = len(items)
+func SelectionSort( pArray []int, pChannel chan utility.Pair) {
+    var n = len(pArray)
     for i := 0; i < n; i++ {
         var minIdx = i
         for j := i; j < n; j++ {
-            if items[j] < items[minIdx] {
+            if pArray[j] < pArray[minIdx] {
                 minIdx = j
             }
         }
-        items[i], items[minIdx] = items[minIdx], items[i]
+        utility.Swap(i, minIdx, pArray, pChannel )
     }
 }
 
