@@ -26,6 +26,7 @@ func siftup(index int, size int, array []int, channel chan utility.Pair) {
 				childIndex = sibling
 			}
 		}
+
 		if array[childIndex] > rootValue {
 			array[index] = array[childIndex]
 			channel <- utility.Pair{A: index, B: childIndex}

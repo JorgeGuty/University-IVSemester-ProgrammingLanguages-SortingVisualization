@@ -130,7 +130,7 @@ func solve(c echo.Context) error {
 	go AlgorithmVisualizer(bubbleArray,    bubbleSortID,    &waitGroup, client)
 	go AlgorithmVisualizer(insertionArray, insertionSortID, &waitGroup, client)
 	go AlgorithmVisualizer(selectionArray, selectionSortID, &waitGroup, client)
-	//go AlgorithmVisualizer(quickArray,     quickSortID,     &waitGroup, client)
+	go AlgorithmVisualizer(quickArray,     quickSortID,     &waitGroup, client)
 	waitGroup.Done()
 
 	waitGroup.Wait()
@@ -150,3 +150,4 @@ func VisualSwap( pIndex1 int, pIndex2 int, sortID string ){
 	}
 	client.Trigger("arrayVisualization", "swap", swapData)
 }
+

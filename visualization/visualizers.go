@@ -45,6 +45,10 @@ func executeAlgorithm(pArray []int, pSortID string, pChannel chan utility.Pair){
 		case insertionSortID:
 			algorithms.InsertionSort(pArray, pChannel)
 			break
+		case quickSortID:
+			algorithms.QuickSort(pArray, 0, len(pArray)-1, pChannel)
+			break
+
 		//TODO: meter el case del quicksort.
 	}
 	pChannel <- utility.Pair{Done: true}

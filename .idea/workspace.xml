@@ -3,13 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2bf4a4c0-47c0-45fd-8882-7f38fd5a1a21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sorting-algorithms/Algorithms/bubbleSort.go" beforeDir="false" afterPath="$PROJECT_DIR$/sorting-algorithms/Algorithms/bubbleSort.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sorting-algorithms/Algorithms/insertionSort.go" beforeDir="false" afterPath="$PROJECT_DIR$/sorting-algorithms/Algorithms/insertionSort.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sorting-algorithms/Algorithms/quickSort.go" beforeDir="false" afterPath="$PROJECT_DIR$/sorting-algorithms/Algorithms/quickSort.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sorting-algorithms/Algorithms/selectionSort.go" beforeDir="false" afterPath="$PROJECT_DIR$/sorting-algorithms/Algorithms/selectionSort.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sorting-algorithms/Algorithms/treeSort.go" beforeDir="false" afterPath="$PROJECT_DIR$/sorting-algorithms/Algorithms/treeSort.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualization/graph.go" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/graph.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualization/public/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/public/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualization/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualization/visualizers.go" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/visualizers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,7 +15,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../Languages/Go" />
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -47,26 +45,8 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
-  <component name="RunManager" selected="Go Build.go build sorting-visualization/visualization (1)">
-    <configuration name="go build sorting-algorithms" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="University-ProgrammingLanguages-SortingVisualization" />
-      <working_directory value="$PROJECT_DIR$/sorting-algorithms" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/sorting-algorithms/main.go" />
-      <package value="sorting-algorithms" />
-      <directory value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build sorting-visualization/sorting-algorithms" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="University-ProgrammingLanguages-SortingVisualization" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/sorting-algorithms/main.go" />
-      <package value="sorting-visualization/sorting-algorithms" />
-      <directory value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build sorting-visualization/visualization (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="go build sorting-visualization/visualization" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="University-ProgrammingLanguages-SortingVisualization" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
@@ -75,21 +55,9 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build sorting-visualization/visualization" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="University-ProgrammingLanguages-SortingVisualization" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/visualization/graph.go" />
-      <package value="visualization" />
-      <directory value="$PROJECT_DIR$" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build sorting-visualization/visualization (1)" />
         <item itemvalue="Go Build.go build sorting-visualization/visualization" />
-        <item itemvalue="Go Build.go build sorting-visualization/sorting-algorithms" />
-        <item itemvalue="Go Build.go build sorting-algorithms" />
       </list>
     </recent_temporary>
   </component>
