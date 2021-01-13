@@ -13,12 +13,12 @@ import (
 
 // * SortIDs: * 
 
-const heapSortID = "heap";
-const bubbleSortID = "bubble";
-const insertionSortID = "insertion";
-const quickSortID = "quick";
-const treeSortID = "tree";
-const selectionSortID = "selection";
+const heapSortID = "heap"
+const bubbleSortID = "bubble"
+const insertionSortID = "insertion"
+const quickSortID = "quick"
+const treeSortID = "tree"
+const selectionSortID = "selection"
 
 
 var globalArray []int
@@ -48,6 +48,13 @@ type solvedEventElement struct {
 	SortID string
 }
 
+type stats struct {
+	ElapsedTime float64
+	Swaps       int
+	Comparisons int
+	SortID 		string
+}
+
 func main() {
 	// Echo instance
 	e := echo.New()
@@ -64,7 +71,7 @@ func main() {
 	e.GET("/solve", solve)
 
 	// Start server
-	e.Logger.Fatal(e.Start(":11001"))
+	e.Logger.Fatal(e.Start(":11002"))
 }
 
 func visualize(c echo.Context) error {
@@ -131,7 +138,6 @@ func solve(c echo.Context) error {
 	go AlgorithmVisualizer(insertionArray, insertionSortID, &waitGroup, client)
 	go AlgorithmVisualizer(selectionArray, selectionSortID, &waitGroup, client)
 	go AlgorithmVisualizer(quickArray,     quickSortID,     &waitGroup, client)
-	waitGroup.Done()
 
 	waitGroup.Wait()
 

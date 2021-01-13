@@ -1,29 +1,45 @@
 package main
 
-import(
+import (
 	"github.com/pusher/pusher-http-go"
-	"sorting-visualization/sorting-algorithms/Utility"
 	"sorting-visualization/sorting-algorithms/Algorithms"
+	"sorting-visualization/sorting-algorithms/Utility"
 	"sync"
+	"time"
 )
+
+
 // AlgorithmVisualizer calls the specified function
 func AlgorithmVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGroup, pPusherClient pusher.Client){
 
 	defer pWaitGroup.Done()
 	defer pPusherClient.Trigger("arrayVisualization", "solved", solvedEventElement{pSortID})
 
+	swaps := 0
+
 	channel := make(chan utility.Pair)
 
+	start := time.Now()
 	go executeAlgorithm(pArray, pSortID, channel)
 
 	var pairToSwap utility.Pair
 	for {
 		pairToSwap = <- channel
 
-		if(pairToSwap.Done){break}
-
+		if(pairToSwap.Done){
+			t := time.Now()
+			elapsed := float64(t.Sub(start)/time.Millisecond)
+			pPusherClient.Trigger("arrayVisualization", "showStats", stats{elapsed, swaps, 0, pSortID})
+			break
+		}
+		swaps++
 		VisualSwap(pairToSwap.A,pairToSwap.B,pSortID)
 	}
+
+
+
+
+
 
 }
 

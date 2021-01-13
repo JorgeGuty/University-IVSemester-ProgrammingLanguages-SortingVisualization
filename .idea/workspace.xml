@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2bf4a4c0-47c0-45fd-8882-7f38fd5a1a21" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sorting-algorithms/Algorithms/quickSort.go" beforeDir="false" afterPath="$PROJECT_DIR$/sorting-algorithms/Algorithms/quickSort.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sorting-algorithms/Algorithms/treeSort.go" beforeDir="false" afterPath="$PROJECT_DIR$/sorting-algorithms/Algorithms/treeSort.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualization/graph.go" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/graph.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/public/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/public/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualization/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visualization/visualizers.go" beforeDir="false" afterPath="$PROJECT_DIR$/visualization/visualizers.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +13,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" url="file://$PROJECT_DIR$/../../Go" />
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../Languages/Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>

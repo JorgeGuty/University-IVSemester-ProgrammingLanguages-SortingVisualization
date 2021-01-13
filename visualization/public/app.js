@@ -82,6 +82,43 @@ visualization.bind('swap', data => {
     }
 });
 
+visualization.bind('showStats', data => {
+
+    let sortID = data.SortID
+    let swaps = data.Swaps
+    let comparisons = data.Comparisons
+    let elapsedTime = data.ElapsedTime
+
+    let statsString = `Tiempo: ${elapsedTime}ms :: Comparaciones: ${comparisons} :: Intercambios ${swaps}`
+
+    switch (sortID)
+    {
+        case "bubble":
+            document.getElementById("statsBubble").innerText = statsString;
+            break;
+
+        case "heap":
+            document.getElementById("statsHeap").innerText = statsString;
+            break;
+
+        case "selection":
+            document.getElementById("statsSelection").innerText = statsString;
+            break;
+
+        case "insertion":
+            document.getElementById("statsInsertion").innerText = statsString;
+            break;
+
+        case "quick":
+            document.getElementById("statsQuick").innerText = statsString;
+            break;
+
+        case "tree":
+            document.getElementById("statsTree").innerText = statsString;
+            break;
+    }
+})
+
 visualization.bind('solved', data => {
 
     let sortID = data.SortID
@@ -121,11 +158,6 @@ visualization.bind('solved', data => {
             break;
 
         case "tree":
-            treeSortChart.data.datasets[0].backgroundColor = color
-            treeSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
-            treeSortChart.update();
-            break;
-        default:
             treeSortChart.data.datasets[0].backgroundColor = color
             treeSortChart.data.datasets[0].hoverBackgroundColor = hoverColor
             treeSortChart.update();
@@ -201,43 +233,43 @@ function renderCharts() {
 
     insertionSortChart = new Chart(insertionCtx, {
         type: "bar",
-        data: getConfig([]),
+        data: getConfig([], "Insertion Sort"),
         options: options
     });
     quickSortChart = new Chart(quickCtx, {
         type: "bar",
-        data: getConfig([]),
+        data: getConfig([], "Quick Sort"),
         options: options
     });
     treeSortChart = new Chart(treeCtx, {
         type: "bar",
-        data: getConfig([]),
+        data: getConfig([], "Tree Sort"),
         options: options
     });
     selectionSortChart = new Chart(selectionCtx, {
         type: "bar",
-        data: getConfig([]),
+        data: getConfig([], "Selection Sort"),
         options: options
     });
     heapSortChart = new Chart(heapCtx, {
         type: "bar",
-        data: getConfig([]),
+        data: getConfig([], "Heap Sort"),
         options: options
     });
     bubbleSortChart = new Chart(bubbleCtx, {
         type: "bar",
-        data: getConfig([]),
+        data: getConfig([], "Bubble Sort"),
         options: options
     });
 
 }
 
-function getConfig(pDataArray){
+function getConfig(pDataArray, pLabel){
     return {
         labels: [],
         datasets: [
             {
-                label: "",
+                label: pLabel,
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor : "rgb(227,106,106)",
