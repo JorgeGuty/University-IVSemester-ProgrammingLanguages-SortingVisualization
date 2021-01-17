@@ -1,8 +1,6 @@
 package algorithms
 
 import(
-    //Import for Pair Struct
-    //"sorting-visualization/sorting-algorithms/Utility"
     utility "sorting-visualization/sorting-algorithms/Utility"
 )
 

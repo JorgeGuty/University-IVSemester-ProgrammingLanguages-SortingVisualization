@@ -2,9 +2,6 @@ package algorithms
 
 import (
     utility "sorting-visualization/sorting-algorithms/Utility"
-
-    //Import for Pair Struct
-    //"sorting-visualization/sorting-algorithms/Utility"
 )
 
 func QuickSort(arr []int, start int, end int, pChannel chan utility.Pair) {
