@@ -132,12 +132,12 @@ func solve(c echo.Context) error {
 	waitGroup.Add(6)
 
 	//Visualizer foos here
-	go AlgorithmVisualizer(treeArray,      treeSortID,      &waitGroup, client)
-	go AlgorithmVisualizer(heapArray,      heapSortID,      &waitGroup, client)
-	go AlgorithmVisualizer(bubbleArray,    bubbleSortID,    &waitGroup, client)
-	go AlgorithmVisualizer(insertionArray, insertionSortID, &waitGroup, client)
-	go AlgorithmVisualizer(selectionArray, selectionSortID, &waitGroup, client)
-	go AlgorithmVisualizer(quickArray,     quickSortID,     &waitGroup, client)
+	go AlgorithmVisualizer(treeArray,      treeSortID,      &waitGroup)
+	go AlgorithmVisualizer(heapArray,      heapSortID,      &waitGroup)
+	go AlgorithmVisualizer(bubbleArray,    bubbleSortID,    &waitGroup)
+	go AlgorithmVisualizer(insertionArray, insertionSortID, &waitGroup)
+	go AlgorithmVisualizer(selectionArray, selectionSortID, &waitGroup)
+	go AlgorithmVisualizer(quickArray,     quickSortID,     &waitGroup)
 
 	waitGroup.Wait()
 
@@ -148,12 +148,27 @@ func solve(c echo.Context) error {
 }
 
 // VisualSwap swaps two bars in visualization
-func VisualSwap( pIndex1 int, pIndex2 int, sortID string ){
+func VisualSwap( pIndex1 int, pIndex2 int, pSortID string ){
 	swapData := swapElement{
 		Index1: pIndex1,
 		Index2: pIndex2,
-		SortID: sortID,
+		SortID: pSortID,
 	}
 	client.Trigger("arrayVisualization", "swap", swapData)
+}
+// ShowStats sends the number of iterations, swaps,comparisons and elapsed time to the visualization
+func ShowStats(pElapsedTime float64, pIterations int, pSwaps int, pComparisons int, pSortID string){
+	statData := stats{
+		ElapsedTime: pElapsedTime,
+		Swaps: pSwaps,
+		Comparisons: pComparisons,
+		//falta iterations
+		SortID: pSortID,
+	}
+	client.Trigger("arrayVisualization", "showStats", statData)
+}
+// VisualDone Indicates in the visualization when an algorithm is done
+func VisualDone(pSortID string){
+	client.Trigger("arrayVisualization", "solved", solvedEventElement{pSortID})
 }
 

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/pusher/pusher-http-go"
 	"sorting-visualization/sorting-algorithms/Algorithms"
 	"sorting-visualization/sorting-algorithms/Utility"
 	"sync"
@@ -10,37 +9,25 @@ import (
 
 
 // AlgorithmVisualizer calls the specified function
-func AlgorithmVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGroup, pPusherClient pusher.Client){
+func AlgorithmVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGroup){
 
 	defer pWaitGroup.Done()
-	defer pPusherClient.Trigger("arrayVisualization", "solved", solvedEventElement{pSortID})
+	defer VisualDone(pSortID)
 
 	swaps := 0
 
 	channel := make(chan utility.Pair)
 
 	start := time.Now()
+
 	go executeAlgorithm(pArray, pSortID, channel)
 
-	var pairToSwap utility.Pair
-	for {
-		pairToSwap = <- channel
-
-		if(pairToSwap.Done){
-			t := time.Now()
-			elapsed := float64(t.Sub(start)/time.Millisecond)
-			pPusherClient.Trigger("arrayVisualization", "showStats", stats{elapsed, swaps, 0, pSortID})
-			break
-		}
+	for pairToSwap := range channel{	
 		swaps++
 		VisualSwap(pairToSwap.A,pairToSwap.B,pSortID)
 	}
-
-
-
-
-
-
+	elapsed := float64(time.Now().Sub(start)/time.Millisecond)
+	ShowStats(elapsed,0,swaps,0,pSortID)
 }
 
 func executeAlgorithm(pArray []int, pSortID string, pChannel chan utility.Pair){
@@ -64,44 +51,6 @@ func executeAlgorithm(pArray []int, pSortID string, pChannel chan utility.Pair){
 		case quickSortID:
 			algorithms.QuickSort(pArray, 0, len(pArray)-1, pChannel)
 			break
-
-		//TODO: meter el case del quicksort.
 	}
-	pChannel <- utility.Pair{Done: true}
+	close(pChannel)
 }
-/*
-// TreeSortVisualizer consumer function of TreeSort()
-func TreeSortVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGroup){
-	defer pWaitGroup.Done()
-	channel := make(chan utility.Pair)
-	go algorithms.TreeSort(pArray, channel)
-	var pairToSwap utility.Pair
-	for {
-		pairToSwap = <- channel
-		VisualSwap(pairToSwap.A,pairToSwap.B,pSortID)
-	}
-}
-
-// HeapSortVisualizer consumer function of HeapSort()
-func HeapSortVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGroup){
-	defer pWaitGroup.Done()
-	channel := make(chan utility.Pair)
-	go algorithms.HeapSort(pArray, channel)
-	var pairToSwap utility.Pair
-	for {
-		pairToSwap = <- channel
-		VisualSwap(pairToSwap.A,pairToSwap.B,pSortID)
-	}
-}
-
-func BubbleSortVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGroup){
-	defer pWaitGroup.Done()
-	channel := make(chan utility.Pair)
-	go algorithms.BubbleSort(pArray, channel)
-	var pairToSwap utility.Pair
-	for {
-		pairToSwap = <- channel
-		VisualSwap(pairToSwap.A,pairToSwap.B,pSortID)
-	}
-}
-*/

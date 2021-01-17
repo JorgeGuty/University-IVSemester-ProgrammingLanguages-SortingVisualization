@@ -6,7 +6,6 @@ package utility
 type Pair struct {
     A int
     B int
-    Done bool
 }
 
 // Swap Utility with channel 
