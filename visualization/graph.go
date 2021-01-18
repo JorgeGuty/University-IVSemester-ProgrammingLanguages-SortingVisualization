@@ -52,6 +52,7 @@ type stats struct {
 	ElapsedTime float64
 	Swaps       int
 	Comparisons int
+	Iterations int
 	SortID 		string
 }
 
@@ -162,7 +163,7 @@ func ShowStats(pElapsedTime float64, pIterations int, pSwaps int, pComparisons i
 		ElapsedTime: pElapsedTime,
 		Swaps: pSwaps,
 		Comparisons: pComparisons,
-		//falta iterations
+		Iterations: pIterations,
 		SortID: pSortID,
 	}
 	client.Trigger("arrayVisualization", "showStats", statData)

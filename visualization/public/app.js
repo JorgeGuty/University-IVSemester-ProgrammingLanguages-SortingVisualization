@@ -88,8 +88,9 @@ visualization.bind('showStats', data => {
     let swaps = data.Swaps
     let comparisons = data.Comparisons
     let elapsedTime = data.ElapsedTime
+    let iterations = data.Iterations
 
-    let statsString = `Tiempo: ${elapsedTime}ms :: Comparaciones: ${comparisons} :: Intercambios ${swaps}`
+    let statsString = `Tiempo: ${elapsedTime}ms :: Comparaciones: ${comparisons} :: Intercambios ${swaps} :: Eval de Ciclos ${iterations}`
 
     switch (sortID)
     {
