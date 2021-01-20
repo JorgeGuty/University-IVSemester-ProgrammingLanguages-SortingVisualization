@@ -23,7 +23,7 @@ func heapify(pArray []int, pSize int, pRoot int, pChannel chan utility.Pair, pSt
 	leftChild := 2 * pRoot + 1;
 	rightChild := 2 * pRoot + 2;
 
-	pStats.Comparisons += 2
+	pStats.Comparisons += 4
 
 	if(leftChild < pSize && pArray[leftChild] > pArray[max]){
 		max = leftChild;
