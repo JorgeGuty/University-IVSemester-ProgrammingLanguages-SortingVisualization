@@ -29,6 +29,7 @@ func siftup(index int, size int, array []int, channel chan utility.Pair,pStats *
 		pStats.Comparisons++
 		if childIndex < size {
 			sibling = childIndex + 1
+			pStats.Comparisons++
 			if array[sibling] > array[childIndex] {
 				childIndex = sibling
 			}
