@@ -29,7 +29,7 @@ func AlgorithmVisualizer(pArray []int, pSortID string, pWaitGroup *sync.WaitGrou
 		VisualSwap(pairToSwap.A,pairToSwap.B,pSortID)
 	}
 	elapsed := float64(time.Now().Sub(start)/time.Millisecond)
-	ShowStats(elapsed,stats.Comparisons,swaps,stats.Iterations,pSortID)
+	ShowStats(elapsed,stats.Iterations,swaps,stats.Comparisons,pSortID)
 }
 
 func executeAlgorithm(pArray []int, pSortID string, pChannel chan utility.Pair, pStats *utility.Stats){
